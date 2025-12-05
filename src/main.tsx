@@ -1,14 +1,16 @@
-import { createTheme, MantineProvider } from '@mantine/core'
+import { MantineProvider } from '@mantine/core'
 import '@mantine/core/styles.css'
 import { createRoot } from 'react-dom/client'
 import { App } from './App'
+import { theme } from './theme'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const theme = createTheme({
-  primaryColor: 'dark',
-})
+const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
   <MantineProvider theme={theme}>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   </MantineProvider>,
 )
