@@ -3,6 +3,5 @@
   "semi": false,
   "singleQuote": true,
   "trailingComma": "all",
-  "tabWidth": 2,
-  "plugins": ["prettier-plugin-organize-imports"]
+  "tabWidth": 2
 }
