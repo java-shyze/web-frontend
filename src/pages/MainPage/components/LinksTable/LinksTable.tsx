@@ -104,7 +104,12 @@ export const LinksTable: FC<LinksTableProps> = ({
           <Text h={18} fz={14} fw={600}>
             Переходы
           </Text>
-          <Tooltip label="Общее количество переходов по ссылке">
+          <Tooltip
+            maw={180}
+            ta="center"
+            multiline
+            label="Общее количество переходов по ссылке"
+          >
             <IconInfoCircle size={18} />
           </Tooltip>
         </Group>
