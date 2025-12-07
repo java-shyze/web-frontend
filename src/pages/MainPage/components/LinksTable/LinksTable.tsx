@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import type { Link } from '../../types/Link'
 import { DataTable, type DataTableColumn } from 'mantine-datatable'
 import dayjs from 'dayjs'
 import {
@@ -15,8 +14,9 @@ import {
   Tooltip,
 } from '@mantine/core'
 import { IconInfoCircle, IconRefresh } from '@tabler/icons-react'
-import type { Pagination as PaginationType } from '../../types/Pagination'
 import { RowActions } from './RowActions'
+import type { Link } from '../../../../types/Link'
+import type { Pagination as PaginationType } from '../../../../types/Pagination'
 
 interface LinksTableProps {
   links: Link[]
