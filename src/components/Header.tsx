@@ -34,7 +34,11 @@ export const Header: FC<HeaderProps> = ({ search, onSearch }) => {
       </Button>
 
       <Modal opened={opened} onClose={close} withCloseButton={false}>
-        <LinkForm buttonLabel="Добавить" onSubmit={handleSubmit} />
+        <LinkForm
+          initialValues={{ alias: '', url: '' }}
+          buttonLabel="Добавить"
+          onSubmit={handleSubmit}
+        />
       </Modal>
     </Flex>
   )
