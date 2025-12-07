@@ -6,15 +6,17 @@ import { HTTP_REGEXP } from '../constants/regexp'
 
 interface LinkFormProps {
   buttonLabel: string
+  initialValues?: LinkFormValues
   onSubmit: (payload: LinkFormValues) => void
 }
 
-export const LinkForm: FC<LinkFormProps> = ({ buttonLabel, onSubmit }) => {
+export const LinkForm: FC<LinkFormProps> = ({
+  initialValues,
+  buttonLabel,
+  onSubmit,
+}) => {
   const form = useForm<LinkFormValues>({
-    initialValues: {
-      alias: '',
-      url: '',
-    },
+    initialValues,
     validate: {
       url: (value) =>
         isNotEmpty('Заполните поле')(value) ||

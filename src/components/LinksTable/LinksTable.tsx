@@ -14,8 +14,9 @@ import {
   Title,
   Tooltip,
 } from '@mantine/core'
-import { IconDots, IconInfoCircle, IconRefresh } from '@tabler/icons-react'
+import { IconInfoCircle, IconRefresh } from '@tabler/icons-react'
 import type { Pagination as PaginationType } from '../../types/Pagination'
+import { RowActions } from './RowActions'
 
 interface LinksTableProps {
   links: Link[]
@@ -93,7 +94,7 @@ export const LinksTable: FC<LinksTableProps> = ({
       ellipsis: true,
       resizable: true,
       width: 250,
-      render: (link) => dayjs(link.createdAt).fromNow(),
+      render: (link) => dayjs(link.updatedAt).fromNow(),
     },
 
     {
@@ -119,10 +120,8 @@ export const LinksTable: FC<LinksTableProps> = ({
           <IconRefresh size={20} />
         </ActionIcon>
       ),
-      render: () => (
-        <ActionIcon variant="transparent">
-          <IconDots />
-        </ActionIcon>
+      render: ({ id, alias, originalUrl }) => (
+        <RowActions id={id} formValues={{ alias, url: originalUrl }} />
       ),
       width: 60,
     },
