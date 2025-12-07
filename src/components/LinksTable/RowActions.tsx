@@ -29,7 +29,7 @@ export const RowActions: FC<RowActionsProps> = ({ formValues, id }) => {
   }
 
   return (
-    <Menu position="bottom-end">
+    <Menu position="bottom-end" radius={12}>
       <Menu.Target>
         <ActionIcon variant="transparent">
           <IconDots />
