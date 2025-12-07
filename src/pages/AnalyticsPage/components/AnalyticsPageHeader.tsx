@@ -5,48 +5,59 @@ import {
   IconRefresh,
 } from '@tabler/icons-react'
 import type { FC } from 'react'
-import { useGetLinkById } from '../../../hooks/useGetLinkById'
-import { useParams } from 'react-router'
 import { DatePickerInput } from '@mantine/dates'
 import dayjs from 'dayjs'
 import { useAnalyticsPeriodStorage } from '../../../hooks/useAnalyticsPeriodStorage'
+import { useNavigate } from 'react-router'
 
-export const AnalyticsPageHeader: FC = () => {
+interface AnalyticsPageHeaderProps {
+  originalUrl: string
+  shortUrl: string
+  onRefetch?: () => void
+}
+
+export const AnalyticsPageHeader: FC<AnalyticsPageHeaderProps> = ({
+  originalUrl,
+  shortUrl,
+  onRefetch,
+}) => {
   const today = dayjs()
-  const { id } = useParams()
   const { period, setPeriod } = useAnalyticsPeriodStorage()
-
-  const { data: link, refetch } = useGetLinkById(id ?? '')
+  const navigate = useNavigate()
 
   return (
     <Flex justify="space-between" align="center">
       <Group align="center" gap={12}>
-        <ActionIcon variant="transparent" size={32}>
+        <ActionIcon
+          variant="transparent"
+          size={32}
+          onClick={() => navigate('/')}
+        >
           <IconChevronLeft size={42} />
         </ActionIcon>
 
         <Group>
           <Text maw={250} truncate fz={18}>
-            {link?.originalUrl}
+            {originalUrl}
           </Text>
 
           <IconArrowRight size={18} color="grey" />
 
           <Anchor
-            href={link?.shortUrl}
+            href={shortUrl}
             maw={250}
             truncate
             fz={18}
             c="grey"
             target="_blank"
           >
-            {link?.shortUrl}
+            {shortUrl}
           </Anchor>
         </Group>
       </Group>
 
       <Group>
-        <ActionIcon variant="transparent" onClick={() => refetch()}>
+        <ActionIcon variant="transparent" onClick={onRefetch}>
           <IconRefresh />
         </ActionIcon>
 
