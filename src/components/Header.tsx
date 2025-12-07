@@ -1,15 +1,18 @@
 import { Button, Flex, Modal, TextInput } from '@mantine/core'
-import { useDebouncedState, useDisclosure } from '@mantine/hooks'
+import { useDisclosure } from '@mantine/hooks'
 import { IconPlus, IconSearch } from '@tabler/icons-react'
 import { type FC } from 'react'
 import { LinkForm } from './LinkForm'
 import { useCreateLink } from '../hooks/useCreateLink'
 import type { LinkFormValues } from '../types/LinkFormValues'
 
-export const Header: FC = () => {
-  const [opened, { close, open }] = useDisclosure(false)
-  const [search, setSearch] = useDebouncedState('', 500)
+interface HeaderProps {
+  search?: string
+  onSearch?: (value: string) => void
+}
 
+export const Header: FC<HeaderProps> = ({ search, onSearch }) => {
+  const [opened, { close, open }] = useDisclosure(false)
   const { mutate: createLink } = useCreateLink()
 
   const handleSubmit = (payload: LinkFormValues) => {
@@ -24,7 +27,7 @@ export const Header: FC = () => {
         leftSection={<IconSearch size={18} />}
         placeholder="Поиск"
         defaultValue={search}
-        onChange={(e) => setSearch(e.currentTarget.value)}
+        onChange={(e) => onSearch?.(e.currentTarget.value)}
       />
       <Button h={40} leftSection={<IconPlus size={18} />} onClick={open}>
         Добавить ссылку

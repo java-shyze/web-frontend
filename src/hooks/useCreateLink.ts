@@ -1,11 +1,18 @@
-import { useMutation, type MutationOptions } from '@tanstack/react-query'
+import {
+  useMutation,
+  useQueryClient,
+  type MutationOptions,
+} from '@tanstack/react-query'
 import type { LinkFormValues } from '../types/LinkFormValues'
 import type { Link } from '../types/Link'
 import { LINKS_URL } from '../constants/urls'
+import { getLinksKey } from './useGetLinks'
 
 export const useCreateLink = (
   options?: MutationOptions<Link, Error, LinkFormValues>,
 ) => {
+  const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: async (payload) => {
       const resp = await fetch(LINKS_URL, {
@@ -28,5 +35,9 @@ export const useCreateLink = (
     },
 
     ...options,
+    onSuccess: (...args) => {
+      options?.onSuccess?.(...args)
+      queryClient.invalidateQueries({ queryKey: [getLinksKey] })
+    },
   })
 }
