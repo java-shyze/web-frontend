@@ -89,7 +89,7 @@ export const LinksTable: FC<LinksTableProps> = ({
     },
     {
       titleStyle: { color: 'grey' },
-      title: 'Обновлен в',
+      title: 'Обновлен',
       accessor: 'updatedAt',
       ellipsis: true,
       resizable: true,

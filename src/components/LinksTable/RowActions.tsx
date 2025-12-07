@@ -52,7 +52,8 @@ export const RowActions: FC<RowActionsProps> = ({ formValues, id }) => {
           </Text>
         </Menu.Item>
         <Menu.Item
-          leftSection={<IconTrash size={14} color="grey" />}
+          color="red"
+          leftSection={<IconTrash size={14} color="red" opacity={0.6} />}
           onClick={() => deleteLink()}
         >
           <Text fz={14} h={18}>
