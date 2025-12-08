@@ -8,9 +8,10 @@ import {
 import type { FC } from 'react'
 import { LinkForm } from '../LinkForm'
 import { useDisclosure } from '@mantine/hooks'
-import type { LinkFormValues } from '../../types/LinkFormValues'
-import { useEditLink } from '../../hooks/useEditLink'
-import { useDeleteLink } from '../../hooks/useDeleteLink'
+import { useEditLink } from '../../../../hooks/useEditLink'
+import { useDeleteLink } from '../../../../hooks/useDeleteLink'
+import type { LinkFormValues } from '../../../../types/LinkFormValues'
+import { useNavigate } from 'react-router'
 
 interface RowActionsProps {
   id: string
@@ -18,6 +19,7 @@ interface RowActionsProps {
 }
 
 export const RowActions: FC<RowActionsProps> = ({ formValues, id }) => {
+  const navigate = useNavigate()
   const { mutate: editLink } = useEditLink(id)
   const { mutateAsync: deleteLink } = useDeleteLink(id)
   const [editModalOpened, { open: editModalOpen, close: editModalClose }] =
@@ -37,7 +39,10 @@ export const RowActions: FC<RowActionsProps> = ({ formValues, id }) => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item leftSection={<IconChartHistogram size={14} color="grey" />}>
+        <Menu.Item
+          onClick={() => navigate(`/link/${id}`)}
+          leftSection={<IconChartHistogram size={14} color="grey" />}
+        >
           <Text fz={14} h={16}>
             Analytics
           </Text>

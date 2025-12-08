@@ -1,12 +1,12 @@
 import { useQuery, type QueryOptions } from '@tanstack/react-query'
-import type { RequestParams } from '../types/RequestParams'
 import { LINKS_URL } from '../constants/urls'
 import type { Response } from '../types/Response'
+import type { LinksRequestParams } from '../types/LinkRequestParams'
 
 export const getLinksKey = 'get-links'
 
 export const useGetLinks = (
-  params?: RequestParams,
+  params?: LinksRequestParams,
   options?: QueryOptions<Response>,
 ) => {
   return useQuery({

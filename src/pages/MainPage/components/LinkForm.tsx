@@ -1,8 +1,9 @@
 import { Button, Flex, Stack, TextInput } from '@mantine/core'
 import { isNotEmpty, matches, useForm } from '@mantine/form'
 import type { FC } from 'react'
-import type { LinkFormValues } from '../types/LinkFormValues'
-import { HTTP_REGEXP } from '../constants/regexp'
+import type { LinkFormValues } from '../../../types/LinkFormValues'
+import { HTTP_REGEXP } from '../../../constants/regexp'
+
 
 interface LinkFormProps {
   buttonLabel: string
