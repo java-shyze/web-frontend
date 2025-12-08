@@ -3,15 +3,15 @@ import { useDisclosure } from '@mantine/hooks'
 import { IconPlus, IconSearch } from '@tabler/icons-react'
 import { type FC } from 'react'
 import { LinkForm } from './LinkForm'
-import { useCreateLink } from '../hooks/useCreateLink'
-import type { LinkFormValues } from '../types/LinkFormValues'
+import { useCreateLink } from '../../../hooks/useCreateLink'
+import type { LinkFormValues } from '../../../types/LinkFormValues'
 
-interface HeaderProps {
+interface MainPageHeaderProps {
   search?: string
   onSearch?: (value: string) => void
 }
 
-export const Header: FC<HeaderProps> = ({ search, onSearch }) => {
+export const MainPageHeader: FC<MainPageHeaderProps> = ({ search, onSearch }) => {
   const [opened, { close, open }] = useDisclosure(false)
   const { mutate: createLink } = useCreateLink()
 
