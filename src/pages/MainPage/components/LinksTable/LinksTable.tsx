@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import type { Link } from '../../types/Link'
 import { DataTable, type DataTableColumn } from 'mantine-datatable'
 import dayjs from 'dayjs'
 import {
@@ -15,8 +14,9 @@ import {
   Tooltip,
 } from '@mantine/core'
 import { IconInfoCircle, IconRefresh } from '@tabler/icons-react'
-import type { Pagination as PaginationType } from '../../types/Pagination'
 import { RowActions } from './RowActions'
+import type { Link } from '../../../../types/Link'
+import type { Pagination as PaginationType } from '../../../../types/Pagination'
 
 interface LinksTableProps {
   links: Link[]
@@ -104,7 +104,12 @@ export const LinksTable: FC<LinksTableProps> = ({
           <Text h={18} fz={14} fw={600}>
             Переходы
           </Text>
-          <Tooltip label="Общее количество переходов по ссылке">
+          <Tooltip
+            maw={180}
+            ta="center"
+            multiline
+            label="Общее количество переходов по ссылке"
+          >
             <IconInfoCircle size={18} />
           </Tooltip>
         </Group>
