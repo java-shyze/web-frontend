@@ -1,0 +1,13 @@
+services:
+  app:
+    image: shyze-frontend-image
+    build: .
+    ports:
+      - '5173:80'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - VITE_LINK_BASE_URL=VITE_LINK_BASE_URL
+      - VITE_ANALYTICS_BASE_URL=VITE_ANALYTICS_BASE_URL
+    container_name: shyze-frontend-container
