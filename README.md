@@ -1,75 +1,95 @@
-# React + TypeScript + Vite
+# 🔗 Shyze Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend-сервис для системы сокращения ссылок с детальной аналитикой. Предоставляет современный веб-интерфейс для взаимодействия с backend-микросервисами.
 
-Currently, two official plugins are available:
+## 🏗 Архитектура
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Этот сервис является частью распределенной системы Shyze:
 
-## React Compiler
+- **shyze-frontend** (этот репозиторий) — веб-интерфейс на React
+- **shyze-links-service** — управление ссылками (создание, редактирование, удаление)
+- **shyze-analytics-service** — сбор и обработка аналитики переходов
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## ✨ Возможности
 
-Note: This will impact Vite dev & build performances.
+- Создание и управление короткими ссылками
+- Поиск и фильтрация ссылок в таблице
+- Просмотр детальной аналитики по каждой ссылке
+- Визуализация статистики (браузеры, устройства, источники)
+- Настраиваемые временные периоды для анализа
+- Адаптивный и современный UI
 
-## Expanding the ESLint configuration
+## 🚀 Быстрый старт
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Требования
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 22+
+- pnpm (или npm/yarn)
+- Docker (опционально)
+- Доступ к backend-сервисам (links-service, analytics-service)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Установка
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Клонировать репозиторий
+git clone <repository-url>
+cd shyze-frontend
+
+# Установить зависимости
+pnpm install
+
+# Настроить переменные окружения
+cp .env.example .env
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Конфигурация
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Отредактируйте `.env` файл, указав адреса backend-сервисов:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_LINK_BASE_URL="http://localhost:8080/api/v1"
+VITE_ANALYTICS_BASE_URL="http://localhost:8081/api/v1"
 ```
+
+### Запуск
+
+**Режим разработки:**
+```bash
+pnpm dev
+# Приложение будет доступно на http://localhost:5173
+```
+
+**Production сборка:**
+```bash
+pnpm build
+pnpm preview
+```
+
+**Docker:**
+```bash
+# С использованием justfile
+just up          # Запустить контейнер
+just logs        # Просмотр логов
+just rebuild     # Пересборка образа
+just down        # Остановить контейнер
+
+# Или напрямую через Docker Compose
+docker compose up -d
+# Приложение будет доступно на http://localhost:5173
+```
+
+## 🛠 Технологии
+
+| Категория | Технологии |
+|-----------|------------|
+| **Framework** | React 19, TypeScript |
+| **Build Tool** | Vite 7 |
+| **UI Library** | Mantine UI 8, Tabler Icons |
+| **State Management** | TanStack Query (React Query) |
+| **Routing** | React Router 7 |
+| **Data Visualization** | Recharts, Mantine Charts |
+| **Forms** | Mantine Form |
+| **Date Handling** | Day.js |
+| **Containerization** | Docker, Docker Compose |
+
+
