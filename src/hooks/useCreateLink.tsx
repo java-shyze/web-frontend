@@ -7,6 +7,7 @@ import type { LinkFormValues } from '../types/LinkFormValues'
 import type { Link } from '../types/Link'
 import { LINKS_URL } from '../constants/urls'
 import { getLinksKey } from './useGetLinks'
+import { notifications } from '@mantine/notifications'
 
 export const useCreateLink = (
   options?: MutationOptions<Link, Error, LinkFormValues>,
@@ -38,6 +39,11 @@ export const useCreateLink = (
     onSuccess: (...args) => {
       options?.onSuccess?.(...args)
       queryClient.invalidateQueries({ queryKey: [getLinksKey] })
+      notifications.show({
+        title: 'Успешно',
+        message: '',
+        position: 'top-right',
+      })
     },
   })
 }
