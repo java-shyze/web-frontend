@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { IconPlus, IconSearch } from '@tabler/icons-react'
 import { type FC } from 'react'
 import { LinkForm } from './LinkForm'
-import { useCreateLink } from '../../../hooks/useCreateLink'
+import { useCreateLink } from '../../../hooks/useCreateLink.tsx'
 import type { LinkFormValues } from '../../../types/LinkFormValues'
 
 interface MainPageHeaderProps {
