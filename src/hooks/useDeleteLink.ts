@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-query'
 import { LINKS_URL } from '../constants/urls'
 import { getLinksKey } from './useGetLinks'
+import { notify } from '../utils/notify'
 
 export const useDeleteLink = (id: string, options?: MutationOptions) => {
   const queryClient = useQueryClient()
@@ -18,6 +19,7 @@ export const useDeleteLink = (id: string, options?: MutationOptions) => {
     onSuccess: (...args) => {
       queryClient.invalidateQueries({ queryKey: [getLinksKey] })
       options?.onSuccess?.(...args)
+      notify('success', 'Ссылка успешно удалена')
     },
   })
 }

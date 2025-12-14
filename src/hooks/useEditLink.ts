@@ -7,6 +7,7 @@ import type { Link } from '../types/Link'
 import type { LinkFormValues } from '../types/LinkFormValues'
 import { LINKS_URL } from '../constants/urls'
 import { getLinksKey } from './useGetLinks'
+import { notify } from '../utils/notify'
 
 export const useEditLink = (
   id: string,
@@ -39,6 +40,7 @@ export const useEditLink = (
     onSuccess: (...args) => {
       options?.onSuccess?.(...args)
       queryClient.invalidateQueries({ queryKey: [getLinksKey] })
+      notify('success', 'Ссылка успешно отредактирована')
     },
   })
 }
