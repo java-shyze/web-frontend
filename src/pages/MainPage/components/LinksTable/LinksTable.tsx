@@ -80,7 +80,7 @@ export const LinksTable: FC<LinksTableProps> = ({
     },
     {
       titleStyle: { color: 'grey' },
-      title: 'Создан в',
+      title: 'Создан',
       accessor: 'createdAt',
       resizable: true,
       ellipsis: true,
@@ -89,7 +89,7 @@ export const LinksTable: FC<LinksTableProps> = ({
     },
     {
       titleStyle: { color: 'grey' },
-      title: 'Обновлен',
+      title: 'Обновлён',
       accessor: 'updatedAt',
       ellipsis: true,
       resizable: true,
